@@ -133,23 +133,7 @@ export default function CVTemplatesPage() {
                     <div className="rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-16 text-center">
 
                         <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-slate-100">
-                            <svg
-                                className="h-6 w-6 text-slate-400"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                            >
-                                <circle
-                                    cx="11"
-                                    cy="11"
-                                    r="7"
-                                />
-                                <path
-                                    strokeLinecap="round"
-                                    d="m20 20-4-4"
-                                />
-                            </svg>
+                            <CiSearch className="text-slate-400 text-2xl"></CiSearch>
                         </div>
 
                         <h3 className="mt-4 text-lg font-semibold text-slate-900">

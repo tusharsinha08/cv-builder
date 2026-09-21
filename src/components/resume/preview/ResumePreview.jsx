@@ -1,101 +1,47 @@
-import PreviewHeader from "./PreviewHeader";
-import PreviewSection from "./PreviewSection";
-import PreviewExperience from "./PreviewExperience";
-import PreviewEducation from "./PreviewEducation";
-import PreviewSkills from "./PreviewSkills";
+"use client";
+
+import { templateRegistry } from "../templates/templateRegistry";
 
 export default function ResumePreview({
     resume,
+    templateId = "classic",
     onBackToEditor,
 }) {
+    const SelectedTemplate =
+        templateRegistry[templateId] || templateRegistry.classic;
+
     return (
-        <div className="h-full overflow-y-auto bg-slate-100">
+        <div className="min-h-screen bg-slate-100 print:bg-white">
+            {/* Preview Toolbar */}
+            <div className="sticky top-0 z-20 border-b border-slate-200 bg-white px-6 py-4 print:hidden">
+                <div className="flex items-center justify-between">
+                    <h2 className="text-lg font-semibold text-slate-800">
+                        Resume Preview
+                    </h2>
 
-            {/* Preview Header */}
-            <div className="sticky top-0 z-20 border-b border-slate-200 bg-white px-6 py-4">
-
-                <div className="flex items-center justify-between gap-4">
-
-                    <div>
-                        <h2 className="text-lg font-semibold text-slate-900">
-                            Live Preview
-                        </h2>
-
-                        <p className="text-sm text-slate-500">
-                            Your resume updates automatically.
-                        </p>
-                    </div>
-
-                    <div className="flex items-center gap-2">
-
-                        {/* Mobile Back Button */}
+                    <div className="flex gap-2">
                         <button
                             type="button"
                             onClick={onBackToEditor}
-                            className="rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 lg:hidden"
+                            className="rounded-lg border border-slate-300 px-4 py-2 text-sm lg:hidden"
                         >
                             Back
                         </button>
 
-                        {/* Print Button */}
                         <button
                             type="button"
                             onClick={() => window.print()}
-                            className="rounded-lg bg-emerald-600 px-3 py-2 text-sm font-medium text-white hover:bg-emerald-700"
+                            className="rounded-lg bg-emerald-600 px-4 py-2 text-sm text-white"
                         >
                             Print
                         </button>
-
                     </div>
-
                 </div>
-
             </div>
 
-            {/* Resume Paper */}
-            <div className="flex justify-center p-4 sm:p-10">
-
-                <article
-                    id="resume-preview"
-                    className="w-full max-w-[794px] bg-white p-6 shadow-lg sm:p-12"
-                >
-                    <PreviewHeader
-                        personal={resume.personal}
-                    />
-
-                    {resume.summary && (
-                        <PreviewSection title="Professional Summary">
-                            <p className="text-sm leading-6 text-slate-700">
-                                {resume.summary}
-                            </p>
-                        </PreviewSection>
-                    )}
-
-                    {resume.experience.length > 0 && (
-                        <PreviewSection title="Work Experience">
-                            <PreviewExperience
-                                experience={resume.experience}
-                            />
-                        </PreviewSection>
-                    )}
-
-                    {resume.education.length > 0 && (
-                        <PreviewSection title="Education">
-                            <PreviewEducation
-                                education={resume.education}
-                            />
-                        </PreviewSection>
-                    )}
-
-                    {resume.skills.length > 0 && (
-                        <PreviewSection title="Skills">
-                            <PreviewSkills
-                                skills={resume.skills}
-                            />
-                        </PreviewSection>
-                    )}
-                </article>
-
+            {/* Selected Template */}
+            <div className="flex justify-center p-4 sm:p-10 print:block print:p-0">
+                <SelectedTemplate resume={resume} />
             </div>
         </div>
     );
