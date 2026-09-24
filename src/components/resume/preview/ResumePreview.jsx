@@ -7,8 +7,7 @@ export default function ResumePreview({
     templateId = "classic",
     onBackToEditor,
 }) {
-    const SelectedTemplate =
-        templateRegistry[templateId] || templateRegistry.classic;
+    const SelectedTemplate = templateRegistry[templateId] || templateRegistry.classic;
 
     return (
         <div className="min-h-screen bg-slate-100 print:bg-white">
@@ -40,7 +39,7 @@ export default function ResumePreview({
             </div>
 
             {/* Selected Template */}
-            <div className="flex justify-center p-4 sm:p-10 print:block print:p-0">
+            <div className="flex justify-center sm:p-10 print:block print:p-0">
                 <SelectedTemplate resume={resume} />
             </div>
         </div>

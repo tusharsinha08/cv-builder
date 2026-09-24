@@ -24,6 +24,7 @@ export default function PersonalInfo({
 
                 <Input
                     label="Full Name"
+                    placeholder="e.g. Tushar Sinha"
                     value={personal.fullName}
                     onChange={(value) =>
                         updateField("fullName", value)
@@ -32,6 +33,7 @@ export default function PersonalInfo({
 
                 <Input
                     label="Job Title"
+                    placeholder="e.g. Software Engineer"
                     value={personal.jobTitle}
                     onChange={(value) =>
                         updateField("jobTitle", value)
@@ -40,6 +42,7 @@ export default function PersonalInfo({
 
                 <Input
                     label="Email"
+                    placeholder="e.g. tushar@example.com"
                     type="email"
                     value={personal.email}
                     onChange={(value) =>
@@ -49,6 +52,7 @@ export default function PersonalInfo({
 
                 <Input
                     label="Phone"
+                    placeholder="e.g. +880 12345-6789"
                     value={personal.phone}
                     onChange={(value) =>
                         updateField("phone", value)
@@ -57,6 +61,7 @@ export default function PersonalInfo({
 
                 <Input
                     label="Location"
+                    placeholder="e.g. Dhaka, Bangladesh"
                     value={personal.location}
                     onChange={(value) =>
                         updateField("location", value)
@@ -65,6 +70,7 @@ export default function PersonalInfo({
 
                 <Input
                     label="Website"
+                    placeholder="e.g. https://tusharsinha.com"
                     value={personal.website}
                     onChange={(value) =>
                         updateField("website", value)
@@ -73,6 +79,7 @@ export default function PersonalInfo({
 
                 <Input
                     label="LinkedIn"
+                    placeholder="e.g. https://linkedin.com/in/username"
                     value={personal.linkedin}
                     onChange={(value) =>
                         updateField("linkedin", value)

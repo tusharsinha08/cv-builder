@@ -81,6 +81,7 @@ export default function Education({
 
                             <Input
                                 label="Degree"
+                                placeholder="e.g. Bachelor of Science"
                                 value={item.degree}
                                 onChange={(value) =>
                                     updateEducation(
@@ -93,6 +94,7 @@ export default function Education({
 
                             <Input
                                 label="Institution"
+                                placeholder="e.g. University of XYZ"
                                 value={item.institution}
                                 onChange={(value) =>
                                     updateEducation(
@@ -105,6 +107,7 @@ export default function Education({
 
                             <Input
                                 label="Location"
+                                placeholder="e.g. Dhaka, Bangladesh"
                                 value={item.location}
                                 onChange={(value) =>
                                     updateEducation(
@@ -119,6 +122,7 @@ export default function Education({
 
                             <Input
                                 label="Start Date"
+                                placeholder="e.g. Jan 2020"
                                 value={item.startDate}
                                 onChange={(value) =>
                                     updateEducation(
@@ -131,6 +135,7 @@ export default function Education({
 
                             <Input
                                 label="End Date"
+                                placeholder="e.g. Dec 2022"
                                 value={item.endDate}
                                 onChange={(value) =>
                                     updateEducation(

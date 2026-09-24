@@ -83,6 +83,7 @@ export default function Experience({
 
                             <Input
                                 label="Job Title"
+                                placeholder="e.g. Software Engineer"
                                 value={item.jobTitle}
                                 onChange={(value) =>
                                     updateExperience(
@@ -95,6 +96,7 @@ export default function Experience({
 
                             <Input
                                 label="Company"
+                                placeholder="e.g. XYZ Corp"
                                 value={item.company}
                                 onChange={(value) =>
                                     updateExperience(
@@ -107,6 +109,7 @@ export default function Experience({
 
                             <Input
                                 label="Location"
+                                placeholder="e.g. New York, USA"
                                 value={item.location}
                                 onChange={(value) =>
                                     updateExperience(
@@ -121,6 +124,7 @@ export default function Experience({
 
                             <Input
                                 label="Start Date"
+                                placeholder="e.g. Jan 2020"
                                 value={item.startDate}
                                 onChange={(value) =>
                                     updateExperience(
@@ -133,6 +137,7 @@ export default function Experience({
 
                             <Input
                                 label="End Date"
+                                placeholder="e.g. Dec 2022"
                                 value={item.endDate}
                                 onChange={(value) =>
                                     updateExperience(
@@ -149,6 +154,7 @@ export default function Experience({
 
                             <Textarea
                                 label="Description"
+                                placeholder="e.g. Led a team of developers to build a web application."
                                 rows={5}
                                 value={item.description}
                                 onChange={(value) =>

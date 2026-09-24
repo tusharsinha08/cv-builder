@@ -4,9 +4,27 @@ import { useState } from "react";
 
 import ResumeForm from "./editor/ResumeForm";
 import ResumePreview from "./preview/ResumePreview";
-import { previewData } from "./preview/previewData"
 
-const initialResume = previewData;
+const initialResume = {
+    personal: {
+        firstName: "",
+        lastName: "",
+        jobTitle: "",
+        email: "",
+        phone: "",
+        location: "",
+        website: "",
+        linkedin: "",
+    },
+
+    summary: "",
+
+    experience: [],
+
+    education: [],
+
+    skills: [],
+};
 
 export default function ResumeEditor() {
     const [resume, setResume] = useState(initialResume);
@@ -15,7 +33,7 @@ export default function ResumeEditor() {
     return (
         <main className="h-screen overflow-hidden bg-slate-100">
 
-            <div className="mx-auto flex h-full max-w-[1600px] flex-col lg:flex-row">
+            <div className="mx-auto flex h-full flex-col lg:flex-row">
 
                 {/* Editor Panel */}
                 <section
