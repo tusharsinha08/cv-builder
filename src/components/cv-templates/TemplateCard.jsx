@@ -25,7 +25,7 @@ export default function TemplateCard({ template }) {
         colorClasses[template.color] || "bg-emerald-600";
 
     const handleUseTemplate = () => {
-        window.location.href = `/create-resume?template=${template.slug}`;
+        window.location.href = `/resume-editor?template=${template.slug}`;
     };
 
     return (

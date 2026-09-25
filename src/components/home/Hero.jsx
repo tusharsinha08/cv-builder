@@ -26,14 +26,14 @@ export default function Hero() {
                         {/* CTA Buttons */}
                         <div className="mt-8 flex flex-wrap gap-4">
                             <a
-                                href="/create-resume"
+                                href="/resume-editor?template=classic"
                                 className="rounded-lg bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700"
                             >
                                 Create My CV
                             </a>
 
                             <a
-                                href="/templates"
+                                href="/cv-templates"
                                 className="rounded-lg border border-gray-300 px-6 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-50"
                             >
                                 Browse Templates
