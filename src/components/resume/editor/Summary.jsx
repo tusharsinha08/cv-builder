@@ -1,5 +1,5 @@
 import Textarea from "../ui/Textarea";
-import EditorSection from "../ui/EditorSection";
+import EditorSection from "./EditorSection";
 
 export default function Summary({
     summary,
@@ -7,8 +7,10 @@ export default function Summary({
 }) {
     return (
         <EditorSection
+            id="summary"
             title="Professional Summary"
-            description="Write a short professional introduction."
+            description="Write a short summary that highlights your professional background."
+            isSortable={true}
         >
             <Textarea
                 label="Summary"

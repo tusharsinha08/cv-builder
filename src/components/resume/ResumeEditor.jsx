@@ -7,8 +7,7 @@ import ResumePreview from "./preview/ResumePreview";
 
 const initialResume = {
     personal: {
-        firstName: "",
-        lastName: "",
+        fullName: "",
         jobTitle: "",
         email: "",
         phone: "",
@@ -16,14 +15,17 @@ const initialResume = {
         website: "",
         linkedin: "",
     },
-
     summary: "",
-
     experience: [],
-
     education: [],
-
     skills: [],
+    sectionOrder: [
+        "personal",
+        "summary",
+        "experience",
+        "education",
+        "skills",
+    ],
 };
 
 export default function ResumeEditor() {
@@ -37,7 +39,7 @@ export default function ResumeEditor() {
 
                 {/* Editor Panel */}
                 <section
-                    className={`h-full w-full overflow-y-auto bg-white lg:block lg:w-[45%] ${showPreview ? "hidden" : "block"
+                    className={`h-full w-full overflow-y-auto bg-white lg:block lg:w-[50%] ${showPreview ? "hidden" : "block"
                         }`}
                 >
                     <ResumeForm
@@ -49,7 +51,7 @@ export default function ResumeEditor() {
 
                 {/* Preview Panel */}
                 <section
-                    className={`h-full w-full overflow-y-auto lg:block lg:w-[55%] ${showPreview ? "block" : "hidden"
+                    className={`h-full w-full overflow-y-auto lg:block lg:w-[50%] ${showPreview ? "block" : "hidden"
                         }`}
                 >
                     <ResumePreview

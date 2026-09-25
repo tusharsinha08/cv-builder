@@ -1,5 +1,5 @@
 import Input from "../ui/Input";
-import EditorSection from "../ui/EditorSection";
+import EditorSection from "./EditorSection";
 
 export default function PersonalInfo({
     personal,
@@ -17,8 +17,10 @@ export default function PersonalInfo({
 
     return (
         <EditorSection
+            id="personal"
             title="Personal Information"
-            description="Basic information that appears on your resume."
+            description="Add your contact details and basic information."
+            isSortable={false}
         >
             <div className="grid gap-4 sm:grid-cols-2">
 

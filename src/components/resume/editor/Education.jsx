@@ -1,5 +1,5 @@
 import Input from "../ui/Input";
-import EditorSection from "../ui/EditorSection";
+import EditorSection from "./EditorSection";
 
 export default function Education({
     education,
@@ -47,8 +47,10 @@ export default function Education({
 
     return (
         <EditorSection
+            id="education"
             title="Education"
             description="Add your educational background."
+            isSortable
         >
 
             <div className="space-y-6">

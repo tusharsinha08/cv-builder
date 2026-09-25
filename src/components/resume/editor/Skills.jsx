@@ -1,4 +1,4 @@
-import EditorSection from "../ui/EditorSection";
+import EditorSection from "./EditorSection";
 
 export default function Skills({
     skills,
@@ -31,8 +31,10 @@ export default function Skills({
 
     return (
         <EditorSection
+            id="skills"
             title="Skills"
             description="Add your technical and professional skills."
+            isSortable
         >
 
             <div className="space-y-3">

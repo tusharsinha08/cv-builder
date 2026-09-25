@@ -39,7 +39,7 @@ export default function ResumePreview({
             </div>
 
             {/* Selected Template */}
-            <div className="flex justify-center sm:p-10 print:block print:p-0">
+            <div className="flex justify-center sm:p-2 print:block print:p-0">
                 <SelectedTemplate resume={resume} />
             </div>
         </div>

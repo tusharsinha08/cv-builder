@@ -11,27 +11,57 @@ export default function ClassicTemplate({ resume }) {
         experience = [],
         education = [],
         skills = [],
+
+        sectionOrder = [
+            "summary",
+            "experience",
+            "education",
+            "skills",
+        ],
     } = resume;
+
+    const sections = {
+        summary: (
+            <PreviewSummary
+                summary={summary}
+            />
+        ),
+
+        experience: (
+            <PreviewExperience
+                experience={experience}
+            />
+        ),
+
+        education: (
+            <PreviewEducation
+                education={education}
+            />
+        ),
+
+        skills: (
+            <PreviewSkills
+                skills={skills}
+            />
+        ),
+    };
 
     return (
         <article
-            className="mx-auto box-border flex min-h-[1123px] w-[794px] flex-col overflow-hidden bg-white p-[56px] font-sans text-slate-900"
+            className="mx-auto box-border flex min-h-[1123px] w-[794px] flex-col overflow-hidden bg-white py-[56px] px-12 font-sans text-slate-900"
         >
-            {/* Header */}
-            <PreviewHeader personal={personal}></PreviewHeader>
 
-            {/* Summary */}
-            <PreviewSummary summary={summary}></PreviewSummary>
+            {/* Fixed Header */}
+            <PreviewHeader
+                personal={personal}
+            />
 
-            {/* Experience */}
-            <PreviewExperience experience={experience}></PreviewExperience>
-
-            {/* Education */}
-            <PreviewEducation education={education}></PreviewEducation>
-
-
-            {/* Skills */}
-            <PreviewSkills skills={skills}></PreviewSkills>
+            {/* Movable Sections */}
+            {sectionOrder.map((sectionId) => (
+                <div key={sectionId}>
+                    {sections[sectionId] ?? null}
+                </div>
+            ))}
 
         </article>
     );

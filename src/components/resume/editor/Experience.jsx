@@ -1,6 +1,6 @@
 import Input from "../ui/Input";
 import Textarea from "../ui/Textarea";
-import EditorSection from "../ui/EditorSection";
+import EditorSection from "./EditorSection";
 
 export default function Experience({
     experience,
@@ -49,8 +49,10 @@ export default function Experience({
 
     return (
         <EditorSection
+            id="experience"
             title="Work Experience"
-            description="Add your professional experience."
+            description="Add your relevant professional experience."
+            isSortable
         >
 
             <div className="space-y-6">
