@@ -16,7 +16,7 @@ export default function TemplateFilters({
 }) {
     return (
         <div className="overflow-x-auto">
-            <div className="flex min-w-max gap-2 pb-2">
+            <div className="flex min-w-max gap-2 py-2">
 
                 {categories.map((category) => {
                     const active = activeCategory === category;

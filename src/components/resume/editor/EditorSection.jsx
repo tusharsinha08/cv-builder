@@ -43,7 +43,7 @@ export default function EditorSection({
             `}
         >
             {/* Section Header */}
-            <div className="mb-5 flex items-start justify-between gap-4">
+            <div className="mb-4 flex items-start justify-between gap-4">
 
                 <div>
                     <h2 className="text-lg font-semibold text-slate-900">

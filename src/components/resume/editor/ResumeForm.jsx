@@ -123,37 +123,23 @@ export default function ResumeForm({
     }
 
     return (
-        <div className="border-r border-slate-200">
+        <div>
 
             {/* Editor Header */}
-            <div className="sticky top-0 z-20 border-b border-slate-200 bg-white px-6 py-5">
-                <div className="flex items-center justify-between gap-4">
-
-                    <div>
-                        <h1 className="text-xl font-semibold text-slate-900">
-                            Resume Editor
-                        </h1>
-
-                        <p className="mt-1 text-sm text-slate-500">
-                            Enter your information to build your resume.
-                        </p>
-                    </div>
-
-                    <button
+            {/* <div className="sticky top-0 z-20 border-b border-slate-200 bg-white px-6 py-5"> */}
+                    {/* <button
                         type="button"
                         onClick={onPreview}
                         className="shrink-0 rounded-lg bg-emerald-600 px-3 py-2 text-sm font-medium text-white transition hover:bg-emerald-700 lg:hidden"
                     >
                         Preview
-                    </button>
+                    </button> */}
+            {/* </div> */}
 
-                </div>
-            </div>
-
-            <div className="p-2 bg-slate-50">
+            <div className="bg-slate-100">
 
                 {/* Fixed Section */}
-                <div className="mb-4">
+                <div className="mb-1">
                     <PersonalInfo
                         personal={resume.personal}
                         setResume={setResume}
@@ -171,7 +157,7 @@ export default function ResumeForm({
                         items={sectionOrder}
                         strategy={verticalListSortingStrategy}
                     >
-                        <div className="space-y-4">
+                        <div className="space-y-1">
                             {sectionOrder.map((sectionId) => (
                                 <div key={sectionId}>
                                     {renderSection(sectionId)}
