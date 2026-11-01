@@ -1,16 +1,18 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-
+import { signIn } from "next-auth/react";
 
 export default function RegisterPage() {
     const [serverError, setServerError] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const router = useRouter();
 
     const {
         register,
@@ -35,13 +37,16 @@ export default function RegisterPage() {
         setSuccessMessage("");
 
         try {
-            // Replace this with your actual registration API call.
+            // The server doesn't need confirmPassword
+            const { confirmPassword, ...payload } = data;
+
+            // 1. Create the account
             const response = await fetch("/api/auth/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(data),
+                body: JSON.stringify(payload),
             });
 
             const result = await response.json();
@@ -50,11 +55,25 @@ export default function RegisterPage() {
                 throw new Error(result.message || "Registration failed.");
             }
 
+            // 2. Log the new user in
+            const loginResult = await signIn("credentials", {
+                email: payload.email,
+                password: payload.password,
+                redirect: false,
+            });
+
             setSuccessMessage(
                 result.message || "Account created successfully!"
             );
-
             reset();
+
+            // 3. Go to the editor (or to sign-in if auto-login failed)
+            if (!loginResult || loginResult.error) {
+                router.push("/sign-in");
+            } else {
+                router.push("/resume-editor");
+                router.refresh();
+            }
         } catch (error) {
             setServerError(
                 error instanceof Error

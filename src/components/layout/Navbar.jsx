@@ -1,5 +1,6 @@
 "use client";
 
+import { useAuth } from "@/hooks/useAuth";
 import { useScroll } from "@/hooks/useScroll";
 import Link from "next/link";
 import { useState } from "react";
@@ -28,7 +29,7 @@ export default function Navbar() {
     const scroll = useScroll();
 
     // Replace this with your actual authentication state.
-    const isAuthenticated = false;
+    const { isAuthenticated } = useAuth();
 
     return (
         <header
@@ -64,7 +65,7 @@ export default function Navbar() {
                 <div className="hidden md:block">
                     {isAuthenticated ? (
                         <Link
-                            href="/my-account"
+                            href="/dashboard"
                             className="rounded-lg border border-emerald-600 px-5 py-2.5 text-sm font-semibold text-emerald-600 transition hover:border-emerald-400 hover:bg-gray-50"
                         >
                             My Account
@@ -78,14 +79,17 @@ export default function Navbar() {
                                 Sign In
                             </Link>
 
-                            <Link
-                                href="/sign-in"
-                                className="rounded-lg bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
-                            >
-                                Create My CV
-                            </Link>
+
                         </div>
                     )}
+                    <div className="ml-4 inline-block">
+                        <Link
+                            href="/resume-editor"
+                            className="rounded-lg bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
+                        >
+                            Create My CV
+                        </Link>
+                    </div>
                 </div>
 
                 {/* Mobile Menu Button */}

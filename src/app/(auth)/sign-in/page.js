@@ -4,11 +4,14 @@ import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 export default function SignInPage() {
     const [serverError, setServerError] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const router = useRouter();
 
     const {
         register,
@@ -29,31 +32,22 @@ export default function SignInPage() {
         setSuccessMessage("");
 
         try {
-            const response = await fetch("/api/auth/sign-in", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
+            // NextAuth handles the request, the password check and the cookie
+            const result = await signIn("credentials", {
+                email: data.email,
+                password: data.password,
+                redirect: false,
             });
 
-            const result = await response.json();
-
-            if (!response.ok) {
-                throw new Error(
-                    result.message || "Invalid email or password."
-                );
+            if (!result || result.error) {
+                throw new Error("Invalid email or password.");
             }
 
-            setSuccessMessage(
-                result.message || "Login successful!"
-            );
-
+            setSuccessMessage("Login successful!");
             reset();
 
-            // Redirect after successful login.
-            // Example:
-            // window.location.href = "/dashboard";
+            router.push("/resume-editor");
+            router.refresh();
         } catch (error) {
             setServerError(
                 error instanceof Error
@@ -136,11 +130,10 @@ export default function SignInPage() {
                                         ? "email-error"
                                         : undefined
                                 }
-                                className={`block w-full rounded-lg border px-4 py-3 text-sm outline-none transition placeholder:text-gray-400 ${
-                                    errors.email
+                                className={`block w-full rounded-lg border px-4 py-3 text-sm outline-none transition placeholder:text-gray-400 ${errors.email
                                         ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-100"
                                         : "border-gray-300 focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100"
-                                }`}
+                                    }`}
                                 {...register("email", {
                                     required: "Email is required.",
                                     pattern: {
@@ -200,11 +193,10 @@ export default function SignInPage() {
                                             ? "password-error"
                                             : undefined
                                     }
-                                    className={`block w-full rounded-lg border px-4 py-3 pr-12 text-sm outline-none transition placeholder:text-gray-400 ${
-                                        errors.password
+                                    className={`block w-full rounded-lg border px-4 py-3 pr-12 text-sm outline-none transition placeholder:text-gray-400 ${errors.password
                                             ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-100"
                                             : "border-gray-300 focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100"
-                                    }`}
+                                        }`}
                                     {...register("password", {
                                         required:
                                             "Password is required.",

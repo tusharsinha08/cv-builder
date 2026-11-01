@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Plan {
+  FREE
+  PRO
+}
+
+model User {
+  id            String    @id @default(cuid())
+
+  // Account
+  name          String
+  email         String    @unique
+  passwordHash  String
+  image         String?
+  emailVerified DateTime?
+
+  // Access
+  isAdmin       Boolean   @default(false)
+  isActive      Boolean   @default(true)
+  plan          Plan      @default(FREE)
+
+  // Profile (used to prefill the resume editor)
+  jobTitle      String?
+  phone         String?
+  location      String?
+  website       String?
+  linkedin      String?
+
+  // Tracking
+  lastLoginAt   DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @default(now()) @updatedAt
+
+  resumes       Resume[]
+  resetTokens   PasswordResetToken[]
+}
+
+model Resume {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  title      String   @default("Untitled")
+  templateId String   @default("classic")
+  data       Json
+
+  isPublic   Boolean  @default(false)
+  slug       String?  @unique
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([userId, updatedAt])
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  tokenHash String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
